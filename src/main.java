@@ -21,6 +21,7 @@ class Main {
         while (player.citizens > 0 && victoire == false) {
 
             menu(player, scanner);
+            round++;
 
         }
         scanner.close();
@@ -43,14 +44,13 @@ class Main {
         System.out.println("| 5 | Commercer | -5 Pierre | +10 Or |");
         System.out.println(
                 "| 6 | CONSTRUIRE LE CHÂTEAU | -100 Bois, -100 Pierre, -200 Or, -40 Habitants | VICTOIRE IMMÉDIATE ! |\n");
-        
 
         try {
             int userChoice = readInt("Votre choix :");
             switch (userChoice) {
                 case 1:
                     System.out.println("Explorer la forêt");
-                    // TODO explore()
+                    explore(player);
                     break;
                 case 2:
                     System.out.println("Créer une mine");
@@ -79,5 +79,18 @@ class Main {
         } catch (NumberFormatException e) {
             System.err.println("Erreur de saisie\n");
         }
+    }
+
+    public static void explore(Assets player) {
+        System.out.println("Confirmez ? O/N");
+        String confirm = scanner.nextLine();
+        if (confirm.equalsIgnoreCase("o")) {
+            int wood = player.getWood() + (5 * player.getCitizens());
+            player.setWood(wood);
+            int food = player.getFood() + (3 * player.getCitizens());
+            player.setFood(food);
+            System.out.println("Vous avez obtenu " +  (5 * player.getCitizens()) + " bois et " + (3 * player.getCitizens()) + " nourritures\n") ;
+        } 
+
     }
 }
