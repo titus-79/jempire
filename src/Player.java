@@ -5,6 +5,8 @@ public class Player {
     private int gold;
     private int food;
     private int citizens;
+    private boolean mine = false;
+    private int round = 0;
 
     public Player(int wood, int stone, int gold, int food, int citizens) {
         this.wood = wood;
@@ -19,6 +21,10 @@ public class Player {
     public int getGold() {return gold;}
     public int getFood() {return food;}
     public int getCitizens() {return citizens;}
+    public boolean getMine() {return mine;}
+    public int getRound() {return round;}
+
+    public int setRound() {return this.round += 1;}
 
 
     public void explore() {
@@ -28,15 +34,24 @@ public class Player {
             int foodUpdate = 3 * citizens;
             this.wood += woodUpdate;
             this.food += foodUpdate;
+            this.round++;
             System.out.println("Vous avez obtenu " +  woodUpdate + " bois et " + foodUpdate + " nourritures\n") ;
          
 
     }
 
-    public boolean createMine() {
-        int woodUpdate = -10;
-        this.wood -= woodUpdate;
-        return false;
+    public void createMine() {
+        if (this.wood >= 10 && this.mine == false) {
+            this.wood -= 10;
+            this.mine = true;
+            this.round++;
+            System.out.println("Mine créée !! Vous pouvez extraire de la pierre et de l'or !\n");
+        } else if (this.wood < 10 && this.mine == false ){
+            System.out.println("Vous n'avez pas assez de bois.\n");
+        }
+        else {
+            System.out.println("Vous avez déja une mine.\n");
+        }
     }
 
     public void workMine() {

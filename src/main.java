@@ -12,7 +12,6 @@ class Main {
 
     public static void main(String[] args) {
         boolean victoire = false;
-        int round = 0;
         Player player = new Player(0, 0, 50, 100, 1);
 
         System.out.println("╔════════════════════════════════════════╗");
@@ -21,14 +20,13 @@ class Main {
         while (player.getCitizens() > 0 && victoire == false) {
 
             menu(player, scanner);
-            round++;
-
         }
         scanner.close();
     }
 
     public static void menu(Player player, Scanner scanner) {
-        System.out.print("| Bois : " + player.getWood());
+        System.out.print("| Tours : " + player.getRound());
+        System.out.print(" || Bois : " + player.getWood());
         System.out.print(" || Pierre : " + player.getStone());
         System.out.print(" || Or : " + player.getGold());
         System.out.print(" || Nourriture : " + player.getFood());
@@ -49,31 +47,31 @@ class Main {
             int userChoice = readInt("Votre choix :");
             switch (userChoice) {
                 case 1:
-                    System.out.println("Explorer la forêt");
+                    System.out.println("Explorer la forêt\n");
                     player.explore();
                     break;
                 case 2:
-                    System.out.println("Créer une mine");
-                    // TODO createMine()
+                    System.out.println("Créer une mine\n");
+                    player.createMine();
                     break;
                 case 3:
-                    System.out.println("Travailler à la mine");
+                    System.out.println("Travailler à la mine\n");
                     // TODO workMine()
                     break;
                 case 4:
-                    System.out.println("Recruter un soldat");
+                    System.out.println("Recruter un soldat\n");
                     // TODO engage()
                     break;
                 case 5:
-                    System.out.println("Commercer");
+                    System.out.println("Commercer\n");
                     // TODO business()
                     break;
                 case 6:
-                    System.out.println("CONSTRUIRE LE CHÂTEAU");
+                    System.out.println("CONSTRUIRE LE CHÂTEAU\n");
                     // TODO buildCastle()
                     break;
                 default:
-                    System.err.println("Veuillez choisir une option valide");
+                    System.err.println("Veuillez choisir une option valide\n");
             }
 
         } catch (NumberFormatException e) {
