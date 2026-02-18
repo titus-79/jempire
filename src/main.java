@@ -12,7 +12,7 @@ class Main {
 
     public static void main(String[] args) {
         boolean victoire = false;
-        Player player = new Player(0, 0, 50, 100, 1);
+        Player player = new Player(10, 0, 50, 7, 1);
 
         System.out.println("╔════════════════════════════════════════╗");
         System.out.println("║           WELCOME TO JEMPIRE           ║");
@@ -65,7 +65,7 @@ class Main {
                     break;
                 case 4:
                     System.out.println("Recruter un soldat\n");
-                    // TODO engage()
+                    player.engage();
                     break;
                 case 5:
                     System.out.println("Commercer\n");
