@@ -46,6 +46,10 @@ public class Player {
         return round += 1;
     }
 
+    public static void setCitizens(int newCitizens) {
+        citizens = newCitizens; 
+    }
+
     public static void explore() {
         int woodUpdate = (5 * citizens);
         int foodUpdate = (3 * citizens);

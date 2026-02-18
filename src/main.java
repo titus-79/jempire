@@ -16,21 +16,13 @@ class Main {
         System.out.println("║           WELCOME TO JEMPIRE           ║");
         System.out.println("╚════════════════════════════════════════╝\n");
         while (Player.getCitizens() > 0 && Player.getVictory() == false) {
-
-            menu( scanner);
+            statusGame();
+            Event.randomEvent();
+            statusGame();
+            menu(scanner);
+            statusGame();
         }
         scanner.close();
-        if (Player.getCitizens() == 0) {
-        System.out.println("╔════════════════════════════════════════╗");
-        System.out.println("║              GAME OVER !!!             ║");
-        System.out.println("╚════════════════════════════════════════╝\n");
-        } else if (Player.getVictory() == true) {
-        System.out.println("╔════════════════════════════════════════╗");
-        System.out.println("║                YOU WIN !!!             ║");
-        System.out.println("╚════════════════════════════════════════╝\n");
-        System.out.println("Score : " + Player.getRound() +"\n");
-
-        }
 
     }
 
@@ -89,5 +81,17 @@ class Main {
         }
     }
 
-    
+    public static void statusGame() {
+        if (Player.getCitizens() == 0) {
+            System.out.println("╔════════════════════════════════════════╗");
+            System.out.println("║              GAME OVER !!!             ║");
+            System.out.println("╚════════════════════════════════════════╝\n");
+        } else if (Player.getVictory() == true) {
+            System.out.println("╔════════════════════════════════════════╗");
+            System.out.println("║                YOU WIN !!!             ║");
+            System.out.println("╚════════════════════════════════════════╝\n");
+            System.out.println("Score : " + Player.getRound() + "\n");
+        }
+    }
+
 }
