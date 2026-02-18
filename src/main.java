@@ -11,7 +11,7 @@ class Main {
     }
 
     public static void main(String[] args) {
-        Player player = new Player(0, 0, 50, 100, 1);
+        Player player = new Player(10, 0, 50, 10, 13);
 
         System.out.println("╔════════════════════════════════════════╗");
         System.out.println("║           WELCOME TO JEMPIRE           ║");

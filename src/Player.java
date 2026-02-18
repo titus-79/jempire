@@ -44,6 +44,7 @@ public class Player {
     public int getRound() {
         return round;
     }
+
     public boolean getVictory() {
         return victory;
     }
@@ -56,7 +57,7 @@ public class Player {
         int woodUpdate = (5 * citizens);
         int foodUpdate = (3 * citizens);
         this.wood += woodUpdate;
-        this.food += foodUpdate ;
+        this.food += foodUpdate;
         tour();
         System.out.println("Vous avez obtenu " + woodUpdate + " bois et " + foodUpdate + " nourritures\n");
 
@@ -111,8 +112,7 @@ public class Player {
             this.stone -= 5;
             System.out.println("Vous avez échangé 5 pierres contre 10 d'or.\n");
             tour();
-        }
-        else {
+        } else {
             System.out.println("Vous n'avez pas assez de pierres.\n");
         }
     }
@@ -129,7 +129,7 @@ public class Player {
     }
 
     public boolean hunger(int nbFood) {
-        boolean lose = nbFood <= 0? true : false;
+        boolean lose = nbFood <= 0 ? true : false;
         if (lose) {
             citizens = 0;
         }
@@ -138,7 +138,13 @@ public class Player {
 
     public void tour() {
         this.round++;
-        this.food -= citizens;
+        if (this.citizens > this.food) {
+            int dead = this.citizens - this.food;
+            this.citizens = this.food;
+            System.out.println(dead + " Habitants sont morts.\n");
+        } else {
+            this.food -= citizens;
+        }
         if (hunger(this.food)) {
             System.out.println("Les habitants sont morts de faim. Vous avez perdu !\n");
         }
