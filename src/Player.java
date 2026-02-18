@@ -28,12 +28,10 @@ public class Player {
 
 
     public void explore() {
-        // System.out.println("Confirmez ? O/N");
-        // String confirm = scanner.nextLine();
-            int woodUpdate = 5 * citizens;
-            int foodUpdate = 3 * citizens;
+            int woodUpdate = (5 * citizens);
+            int foodUpdate = (3 * citizens);
             this.wood += woodUpdate;
-            this.food += foodUpdate;
+            this.food += (foodUpdate + citizens);
             this.round++;
             System.out.println("Vous avez obtenu " +  woodUpdate + " bois et " + foodUpdate + " nourritures\n") ;
          
@@ -46,7 +44,7 @@ public class Player {
             this.mine = true;
             this.round++;
             System.out.println("Mine créée !! Vous pouvez extraire de la pierre et de l'or !\n");
-        } else if (this.wood < 10 && this.mine == false ){
+        } else if (this.wood < 10 && this.mine == false){
             System.out.println("Vous n'avez pas assez de bois.\n");
         }
         else {
@@ -55,6 +53,23 @@ public class Player {
     }
 
     public void workMine() {
+        int foodUpdate = 5;
+        if (this.mine == true && this.food > foodUpdate) {
+            int stoneUpdate = (5 * citizens);
+            int goldUpdate = (2 * citizens);
+            this.food -= (foodUpdate + citizens);
+            this.stone += stoneUpdate;
+            this.gold += goldUpdate;
+            this.round++;
+            System.out.println("Vous avez extrait " + stoneUpdate + " Pierres et " + goldUpdate + " d'Or.\n");
+        }
+        else if (this.mine == true && this.food < foodUpdate) {
+            System.out.println("Les habitants sont morts de faim dans la mine. Vous avez perdu !\n");
+            citizens = 0;
+        }
+        else {
+            System.out.println("Vous n'avez pas de mine.\n");
+        }
         
     }
 
