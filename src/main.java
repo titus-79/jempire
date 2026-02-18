@@ -12,7 +12,7 @@ class Main {
 
     public static void main(String[] args) {
         boolean victoire = false;
-        Player player = new Player(10, 0, 50, 7, 1);
+        Player player = new Player(10, 10, 50, 7, 1);
 
         System.out.println("╔════════════════════════════════════════╗");
         System.out.println("║           WELCOME TO JEMPIRE           ║");
@@ -30,8 +30,8 @@ class Main {
     }
 
     public static void menu(Player player, Scanner scanner) {
-        System.out.print("| Tours : " + player.getRound());
-        System.out.print(" || Bois : " + player.getWood());
+        System.out.println("|| Tours : " + player.getRound() + " ||");
+        System.out.print("| Bois : " + player.getWood());
         System.out.print(" || Pierre : " + player.getStone());
         System.out.print(" || Or : " + player.getGold());
         System.out.print(" || Nourriture : " + player.getFood());
@@ -69,7 +69,7 @@ class Main {
                     break;
                 case 5:
                     System.out.println("Commercer\n");
-                    // TODO business()
+                    player.business();
                     break;
                 case 6:
                     System.out.println("CONSTRUIRE LE CHÂTEAU\n");
