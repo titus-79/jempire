@@ -7,6 +7,7 @@ public class Player {
     private int citizens;
     private boolean mine = false;
     private int round = 0;
+    private boolean victory = false;
 
     public Player(int wood, int stone, int gold, int food, int citizens) {
         this.wood = wood;
@@ -42,6 +43,9 @@ public class Player {
 
     public int getRound() {
         return round;
+    }
+    public boolean getVictory() {
+        return victory;
     }
 
     public int setRound() {
@@ -105,20 +109,27 @@ public class Player {
         if (this.stone >= 5) {
             this.gold += 10;
             this.stone -= 5;
-            System.out.println("Vous avez échangé 5 pierres contre 10 d'or\n");
+            System.out.println("Vous avez échangé 5 pierres contre 10 d'or.\n");
             tour();
         }
         else {
-            System.out.println("Vous n'avez pas assez de pierres\n");
+            System.out.println("Vous n'avez pas assez de pierres.\n");
         }
     }
 
-    public boolean buildCaslte() {
-        return false;
+    public void buildCastle() {
+        if (this.wood >= 100 && this.stone >= 100 && this.gold >= 200 && this.citizens >= 40) {
+            this.victory = true;
+            tour();
+
+        } else {
+            System.out.println("Vous n'avez pas les ressources nécéssaires.\n");
+        }
+        ;
     }
 
-    public boolean hunger(int nbCitizen, int nbFood) {
-        boolean lose = nbCitizen > nbFood ? true : false;
+    public boolean hunger(int nbFood) {
+        boolean lose = nbFood <= 0? true : false;
         if (lose) {
             citizens = 0;
         }
@@ -128,7 +139,7 @@ public class Player {
     public void tour() {
         this.round++;
         this.food -= citizens;
-        if (hunger(citizens, food)) {
+        if (hunger(this.food)) {
             System.out.println("Les habitants sont morts de faim. Vous avez perdu !\n");
         }
         System.out.println("=".repeat(100) + "\n");

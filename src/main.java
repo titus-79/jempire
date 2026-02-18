@@ -11,13 +11,12 @@ class Main {
     }
 
     public static void main(String[] args) {
-        boolean victoire = false;
-        Player player = new Player(10, 10, 50, 7, 1);
+        Player player = new Player(0, 0, 50, 100, 1);
 
         System.out.println("╔════════════════════════════════════════╗");
         System.out.println("║           WELCOME TO JEMPIRE           ║");
         System.out.println("╚════════════════════════════════════════╝\n");
-        while (player.getCitizens() > 0 && victoire == false) {
+        while (player.getCitizens() > 0 && player.getVictory() == false) {
 
             menu(player, scanner);
         }
@@ -26,7 +25,14 @@ class Main {
         System.out.println("╔════════════════════════════════════════╗");
         System.out.println("║              GAME OVER !!!             ║");
         System.out.println("╚════════════════════════════════════════╝\n");
+        } else if (player.getVictory() == true) {
+        System.out.println("╔════════════════════════════════════════╗");
+        System.out.println("║                YOU WIN !!!             ║");
+        System.out.println("╚════════════════════════════════════════╝\n");
+        System.out.println("Score : " + player.getRound() +"\n");
+
         }
+
     }
 
     public static void menu(Player player, Scanner scanner) {
@@ -73,7 +79,7 @@ class Main {
                     break;
                 case 6:
                     System.out.println("CONSTRUIRE LE CHÂTEAU\n");
-                    // TODO buildCastle()
+                    player.buildCastle();
                     break;
                 default:
                     System.err.println("Veuillez choisir une option valide\n");
