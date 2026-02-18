@@ -22,6 +22,11 @@ class Main {
             menu(player, scanner);
         }
         scanner.close();
+        if (player.getCitizens() == 0) {
+        System.out.println("╔════════════════════════════════════════╗");
+        System.out.println("║              GAME OVER !!!             ║");
+        System.out.println("╚════════════════════════════════════════╝\n");
+        }
     }
 
     public static void menu(Player player, Scanner scanner) {
@@ -56,7 +61,7 @@ class Main {
                     break;
                 case 3:
                     System.out.println("Travailler à la mine\n");
-                    // TODO workMine()
+                    player.workMine();
                     break;
                 case 4:
                     System.out.println("Recruter un soldat\n");
