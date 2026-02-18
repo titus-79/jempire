@@ -9,7 +9,6 @@ public class Player {
     private static int round = 0;
     private static boolean victory = false;
 
-
     public static int getWood() {
         return wood;
     }
@@ -47,7 +46,7 @@ public class Player {
     }
 
     public static void setCitizens(int newCitizens) {
-        citizens = newCitizens; 
+        citizens = newCitizens;
     }
 
     public static void explore() {
@@ -138,7 +137,7 @@ public class Player {
         if (citizens > food) {
             int dead = citizens - food;
             citizens = food;
-            System.out.println(dead + " Habitants sont morts.\n");
+            System.out.println(ROUGE+ dead + " Habitants sont morts de faim.\n"+ RESET);
         } else {
             food -= citizens;
         }
@@ -147,4 +146,8 @@ public class Player {
         }
         System.out.println("=".repeat(100) + "\n");
     }
+
+    public static final String RESET = "\u001B[0m";
+    public static final String ROUGE = "\u001B[31m";
+    public static final String VERT = "\u001B[32m";
 }
