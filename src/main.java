@@ -11,37 +11,36 @@ class Main {
     }
 
     public static void main(String[] args) {
-        Player player = new Player(10, 0, 50, 10, 13);
 
         System.out.println("╔════════════════════════════════════════╗");
         System.out.println("║           WELCOME TO JEMPIRE           ║");
         System.out.println("╚════════════════════════════════════════╝\n");
-        while (player.getCitizens() > 0 && player.getVictory() == false) {
+        while (Player.getCitizens() > 0 && Player.getVictory() == false) {
 
-            menu(player, scanner);
+            menu( scanner);
         }
         scanner.close();
-        if (player.getCitizens() == 0) {
+        if (Player.getCitizens() == 0) {
         System.out.println("╔════════════════════════════════════════╗");
         System.out.println("║              GAME OVER !!!             ║");
         System.out.println("╚════════════════════════════════════════╝\n");
-        } else if (player.getVictory() == true) {
+        } else if (Player.getVictory() == true) {
         System.out.println("╔════════════════════════════════════════╗");
         System.out.println("║                YOU WIN !!!             ║");
         System.out.println("╚════════════════════════════════════════╝\n");
-        System.out.println("Score : " + player.getRound() +"\n");
+        System.out.println("Score : " + Player.getRound() +"\n");
 
         }
 
     }
 
-    public static void menu(Player player, Scanner scanner) {
-        System.out.println("|| Tours : " + player.getRound() + " ||");
-        System.out.print("| Bois : " + player.getWood());
-        System.out.print(" || Pierre : " + player.getStone());
-        System.out.print(" || Or : " + player.getGold());
-        System.out.print(" || Nourriture : " + player.getFood());
-        System.out.println(" || Citizens : " + player.getCitizens() + " |\n");
+    public static void menu(Scanner scanner) {
+        System.out.println("|| Tours : " + Player.getRound() + " ||");
+        System.out.print("| Bois : " + Player.getWood());
+        System.out.print(" || Pierre : " + Player.getStone());
+        System.out.print(" || Or : " + Player.getGold());
+        System.out.print(" || Nourriture : " + Player.getFood());
+        System.out.println(" || Citizens : " + Player.getCitizens() + " |\n");
         System.out.println("Choisissez une action parmi les suivantes :");
         System.out.println("| Choix | Action | Coût / Risque | Gain |\n");
         System.out.println("| 1 | Explorer la forêt | Aucun | +5 Bois, +3 Nourriture |");
@@ -59,27 +58,27 @@ class Main {
             switch (userChoice) {
                 case 1:
                     System.out.println("Explorer la forêt\n");
-                    player.explore();
+                    Player.explore();
                     break;
                 case 2:
                     System.out.println("Créer une mine\n");
-                    player.createMine();
+                    Player.createMine();
                     break;
                 case 3:
                     System.out.println("Travailler à la mine\n");
-                    player.workMine();
+                    Player.workMine();
                     break;
                 case 4:
                     System.out.println("Recruter un soldat\n");
-                    player.engage();
+                    Player.engage();
                     break;
                 case 5:
                     System.out.println("Commercer\n");
-                    player.business();
+                    Player.business();
                     break;
                 case 6:
                     System.out.println("CONSTRUIRE LE CHÂTEAU\n");
-                    player.buildCastle();
+                    Player.buildCastle();
                     break;
                 default:
                     System.err.println("Veuillez choisir une option valide\n");
