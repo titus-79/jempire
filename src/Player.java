@@ -16,25 +16,45 @@ public class Player {
         this.citizens = citizens;
     }
 
-    public int getWood() {return wood;}
-    public int getStone() {return stone;}
-    public int getGold() {return gold;}
-    public int getFood() {return food;}
-    public int getCitizens() {return citizens;}
-    public boolean getMine() {return mine;}
-    public int getRound() {return round;}
+    public int getWood() {
+        return wood;
+    }
 
-    public int setRound() {return this.round += 1;}
+    public int getStone() {
+        return stone;
+    }
 
+    public int getGold() {
+        return gold;
+    }
+
+    public int getFood() {
+        return food;
+    }
+
+    public int getCitizens() {
+        return citizens;
+    }
+
+    public boolean getMine() {
+        return mine;
+    }
+
+    public int getRound() {
+        return round;
+    }
+
+    public int setRound() {
+        return this.round += 1;
+    }
 
     public void explore() {
-            int woodUpdate = (5 * citizens);
-            int foodUpdate = (3 * citizens);
-            this.wood += woodUpdate;
-            this.food += (foodUpdate + citizens);
-            this.round++;
-            System.out.println("Vous avez obtenu " +  woodUpdate + " bois et " + foodUpdate + " nourritures\n") ;
-         
+        int woodUpdate = (5 * citizens);
+        int foodUpdate = (3 * citizens);
+        this.wood += woodUpdate;
+        this.food += foodUpdate ;
+        tour();
+        System.out.println("Vous avez obtenu " + woodUpdate + " bois et " + foodUpdate + " nourritures\n");
 
     }
 
@@ -42,38 +62,42 @@ public class Player {
         if (this.wood >= 10 && this.mine == false) {
             this.wood -= 10;
             this.mine = true;
-            this.round++;
+            tour();
             System.out.println("Mine créée !! Vous pouvez extraire de la pierre et de l'or !\n");
-        } else if (this.wood < 10 && this.mine == false){
+        } else if (this.wood < 10 && this.mine == false) {
             System.out.println("Vous n'avez pas assez de bois.\n");
-        }
-        else {
+        } else {
             System.out.println("Vous avez déja une mine.\n");
         }
     }
 
     public void workMine() {
-        int foodUpdate = 5;
-        if (this.mine == true && this.food > foodUpdate) {
+        if (this.mine == true && this.food >= (5 + citizens)) {
             int stoneUpdate = (5 * citizens);
             int goldUpdate = (2 * citizens);
-            this.food -= (foodUpdate + citizens);
+            this.food -= 5;
             this.stone += stoneUpdate;
             this.gold += goldUpdate;
-            this.round++;
             System.out.println("Vous avez extrait " + stoneUpdate + " Pierres et " + goldUpdate + " d'Or.\n");
-        }
-        else if (this.mine == true && this.food < foodUpdate) {
+            tour();
+        } else if (this.mine == true && this.food < (5 + citizens)) {
             System.out.println("Les habitants sont morts de faim dans la mine. Vous avez perdu !\n");
             citizens = 0;
-        }
-        else {
+        } else {
             System.out.println("Vous n'avez pas de mine.\n");
         }
-        
+
     }
 
     public void engage() {
+        if (this.gold >= 30) {
+            this.gold -= 30;
+            this.citizens++;
+            System.out.println("Vous avez recruté un soldat.\n");
+            tour();
+        } else {
+            System.out.println("Vous n'avez pas assez d'or ...\n");
+        }
 
     }
 
@@ -84,5 +108,20 @@ public class Player {
     public boolean buildCaslte() {
         return false;
     }
-    
+
+    public boolean hunger(int nbCitizen, int nbFood) {
+        boolean lose = nbCitizen > nbFood ? true : false;
+        if (lose) {
+            citizens = 0;
+        }
+        return lose;
+    }
+
+    public void tour() {
+        this.round++;
+        this.food -= citizens;
+        if (hunger(citizens, food)) {
+            System.out.println("Les habitants sont morts de faim. Vous avez perdu !\n");
+        }
+    }
 }
