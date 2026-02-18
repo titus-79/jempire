@@ -102,7 +102,15 @@ public class Player {
     }
 
     public void business() {
-
+        if (this.stone >= 5) {
+            this.gold += 10;
+            this.stone -= 5;
+            System.out.println("Vous avez échangé 5 pierres contre 10 d'or\n");
+            tour();
+        }
+        else {
+            System.out.println("Vous n'avez pas assez de pierres\n");
+        }
     }
 
     public boolean buildCaslte() {
@@ -123,5 +131,6 @@ public class Player {
         if (hunger(citizens, food)) {
             System.out.println("Les habitants sont morts de faim. Vous avez perdu !\n");
         }
+        System.out.println("=".repeat(100) + "\n");
     }
 }
