@@ -13,12 +13,12 @@ class Main {
     public static void main(String[] args) {
         boolean victoire = false;
         int round = 0;
-        Assets player = new Assets(0, 0, 50, 100, 1);
+        Player player = new Player(0, 0, 50, 100, 1);
 
         System.out.println("╔════════════════════════════════════════╗");
         System.out.println("║           WELCOME TO JEMPIRE           ║");
         System.out.println("╚════════════════════════════════════════╝\n");
-        while (player.citizens > 0 && victoire == false) {
+        while (player.getCitizens() > 0 && victoire == false) {
 
             menu(player, scanner);
             round++;
@@ -27,7 +27,7 @@ class Main {
         scanner.close();
     }
 
-    public static void menu(Assets player, Scanner scanner) {
+    public static void menu(Player player, Scanner scanner) {
         System.out.print("| Bois : " + player.getWood());
         System.out.print(" || Pierre : " + player.getStone());
         System.out.print(" || Or : " + player.getGold());
@@ -50,7 +50,7 @@ class Main {
             switch (userChoice) {
                 case 1:
                     System.out.println("Explorer la forêt");
-                    explore(player);
+                    player.explore();
                     break;
                 case 2:
                     System.out.println("Créer une mine");
@@ -81,16 +81,5 @@ class Main {
         }
     }
 
-    public static void explore(Assets player) {
-        System.out.println("Confirmez ? O/N");
-        String confirm = scanner.nextLine();
-        if (confirm.equalsIgnoreCase("o")) {
-            int wood = player.getWood() + (5 * player.getCitizens());
-            player.setWood(wood);
-            int food = player.getFood() + (3 * player.getCitizens());
-            player.setFood(food);
-            System.out.println("Vous avez obtenu " +  (5 * player.getCitizens()) + " bois et " + (3 * player.getCitizens()) + " nourritures\n") ;
-        } 
-
-    }
+    
 }
