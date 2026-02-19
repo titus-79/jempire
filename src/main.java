@@ -12,9 +12,9 @@ class Main {
 
     public static void main(String[] args) {
 
-        System.out.println("╔════════════════════════════════════════╗");
+        System.out.println(Player.BLEU + "╔════════════════════════════════════════╗");
         System.out.println("║           WELCOME TO JEMPIRE           ║");
-        System.out.println("╚════════════════════════════════════════╝\n");
+        System.out.println("╚════════════════════════════════════════╝\n" + Player.RESET);
         while (Player.getCitizens() > 0 && Player.getVictory() == false) {
             statusGame();
             Event.randomEvent();
@@ -83,13 +83,13 @@ class Main {
 
     public static void statusGame() {
         if (Player.getCitizens() == 0) {
-            System.out.println("╔════════════════════════════════════════╗");
+            System.out.println(Player.ROUGE +"╔════════════════════════════════════════╗");
             System.out.println("║              GAME OVER !!!             ║");
-            System.out.println("╚════════════════════════════════════════╝\n");
+            System.out.println("╚════════════════════════════════════════╝\n" +Player.RESET);
         } else if (Player.getVictory() == true) {
-            System.out.println("╔════════════════════════════════════════╗");
+            System.out.println(Player.VERT + "╔════════════════════════════════════════╗");
             System.out.println("║                YOU WIN !!!             ║");
-            System.out.println("╚════════════════════════════════════════╝\n");
+            System.out.println("╚════════════════════════════════════════╝\n"+Player.RESET);
             System.out.println("Score : " + Player.getRound() + "\n");
         }
     }
