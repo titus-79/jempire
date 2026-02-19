@@ -9,7 +9,6 @@ public class Player {
     private static int round = 0;
     private static boolean victory = false;
 
-
     public static int getWood() {
         return wood;
     }
@@ -42,8 +41,8 @@ public class Player {
         return victory;
     }
 
-    public static int setRound() {
-        return round += 1;
+    public static void setCitizens(int newCitizens) {
+        citizens = newCitizens;
     }
 
     public static void explore() {
@@ -70,7 +69,7 @@ public class Player {
     }
 
     public static void workMine() {
-        if (mine == true && food >= (5 + citizens)) {
+        if (mine == true && food >= 5) {
             int stoneUpdate = (5 * citizens);
             int goldUpdate = (2 * citizens);
             food -= 5;
@@ -78,7 +77,7 @@ public class Player {
             gold += goldUpdate;
             System.out.println("Vous avez extrait " + stoneUpdate + " Pierres et " + goldUpdate + " d'Or.\n");
             tour();
-        } else if (mine == true && food < (5 + citizens)) {
+        } else if (mine == true && food < 5) {
             System.out.println("Les habitants sont morts de faim dans la mine. Vous avez perdu !\n");
             citizens = 0;
         } else {
@@ -121,26 +120,25 @@ public class Player {
         ;
     }
 
-    public static boolean hunger(int nbFood) {
-        boolean lose = nbFood <= 0 ? true : false;
-        if (lose) {
-            citizens = 0;
-        }
-        return lose;
-    }
-
     public static void tour() {
         round++;
-        if (citizens > food) {
+        if (citizens > food && food > 0) {
             int dead = citizens - food;
             citizens = food;
-            System.out.println(dead + " Habitants sont morts.\n");
+            System.out.println(ROUGE+ dead + " habitant(s) mort(s) de faim.\n"+ RESET);
         } else {
             food -= citizens;
         }
-        if (hunger(food)) {
+        if (food < 0) {
+            food = 0;
+            citizens = 0;
             System.out.println("Les habitants sont morts de faim. Vous avez perdu !\n");
         }
         System.out.println("=".repeat(100) + "\n");
     }
+
+    public static final String RESET = "\u001B[0m";
+    public static final String ROUGE = "\u001B[31m";
+    public static final String VERT = "\u001B[32m";
+    public static final String BLEU    = "\u001B[34m";
 }

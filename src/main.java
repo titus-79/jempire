@@ -12,25 +12,17 @@ class Main {
 
     public static void main(String[] args) {
 
-        System.out.println("╔════════════════════════════════════════╗");
+        System.out.println(Player.BLEU + "╔════════════════════════════════════════╗");
         System.out.println("║           WELCOME TO JEMPIRE           ║");
-        System.out.println("╚════════════════════════════════════════╝\n");
+        System.out.println("╚════════════════════════════════════════╝\n" + Player.RESET);
         while (Player.getCitizens() > 0 && Player.getVictory() == false) {
-
-            menu( scanner);
+            statusGame();
+            Event.randomEvent();
+            statusGame();
+            menu(scanner);
+            statusGame();
         }
         scanner.close();
-        if (Player.getCitizens() == 0) {
-        System.out.println("╔════════════════════════════════════════╗");
-        System.out.println("║              GAME OVER !!!             ║");
-        System.out.println("╚════════════════════════════════════════╝\n");
-        } else if (Player.getVictory() == true) {
-        System.out.println("╔════════════════════════════════════════╗");
-        System.out.println("║                YOU WIN !!!             ║");
-        System.out.println("╚════════════════════════════════════════╝\n");
-        System.out.println("Score : " + Player.getRound() +"\n");
-
-        }
 
     }
 
@@ -38,8 +30,8 @@ class Main {
         System.out.println("|| Tours : " + Player.getRound() + " ||");
         System.out.print("| Bois : " + Player.getWood());
         System.out.print(" || Pierre : " + Player.getStone());
-        System.out.print(" || Or : " + Player.getGold());
-        System.out.print(" || Nourriture : " + Player.getFood());
+        System.out.print(" || Or : " + (Player.getGold() >= 30 ?Player.VERT:Player.ROUGE) + Player.getGold() + Player.RESET);
+        System.out.print(" || Nourriture : " + (Player.getFood() > Player.getCitizens()?Player.VERT:Player.ROUGE) + Player.getFood() + Player.RESET);
         System.out.println(" || Citizens : " + Player.getCitizens() + " |\n");
         System.out.println("Choisissez une action parmi les suivantes :");
         System.out.println("| Choix | Action | Coût / Risque | Gain |\n");
@@ -89,5 +81,17 @@ class Main {
         }
     }
 
-    
+    public static void statusGame() {
+        if (Player.getCitizens() == 0) {
+            System.out.println(Player.ROUGE +"╔════════════════════════════════════════╗");
+            System.out.println("║              GAME OVER !!!             ║");
+            System.out.println("╚════════════════════════════════════════╝\n" +Player.RESET);
+        } else if (Player.getVictory() == true) {
+            System.out.println(Player.VERT + "╔════════════════════════════════════════╗");
+            System.out.println("║                YOU WIN !!!             ║");
+            System.out.println("╚════════════════════════════════════════╝\n"+Player.RESET);
+            System.out.println("Score : " + Player.getRound() + "\n");
+        }
+    }
+
 }
